@@ -16,11 +16,12 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
-    "@typescript-eslint/no-unused-vars": "off",
-    // "@typescript-eslint/no-unused-vars-experimental": "error",
+    // "@typescript-eslint/no-unused-vars": "off",
+    // "@typescript-eslint/no-unused-vars-experimental": "off",
     "no-unused-vars": "off",
     "@typescript-eslint/no-explicit-any": 0,
     "react/no-unknown-property": 0,
-    "react/prop-types": 0
+    "react/prop-types": 0,
+    "eslint-disable react-hooks/exhaustive-deps": 0,
   },
 }

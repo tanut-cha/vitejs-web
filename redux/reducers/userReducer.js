@@ -1,7 +1,7 @@
 import { ADD_CUR_USER } from "../actions/userAction";
 
 const initialState = {
-  user: null,
+  user: undefined,
 };
 
 export function currentUser(state = initialState, action) {
