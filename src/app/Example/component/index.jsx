@@ -3,6 +3,7 @@ import Card from '@mui/material/Card';
 import Paper from '@mui/material/Paper';
 import FullWidthTextField from '../../../components/MUI/FullWidthTextField';
 import DataTable from '../../../components/MUI/DataTables';
+import BasicDateTimePicker from './../../../components/MUI/DesktopDatePicker';
 
 export default function ComponenExample() {
     const headCells = [
@@ -74,7 +75,7 @@ export default function ComponenExample() {
                         <FullWidthTextField labelName={'TextField'} required={'required'} />
                     </div>
                     <div className='col-md-4'>
-                        <FullWidthTextField labelName={'TextField'} required={'required'}/>
+                        <BasicDateTimePicker labelName='DateTimePicker' required={'required'}/>
                     </div>
                     <div className='col-md-4'>
                         <FullWidthTextField labelName={'TextField'} required={'required'}/>

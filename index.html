@@ -4,10 +4,26 @@
     <link rel="shortcut icon" href="http://trr-web.trrgroup.com/storage/CA/DEV/Logo/TRR.png" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Linleasing</title>
+    <title>Layout with React</title>
+    <link rel="stylesheet" id="layout-styles-anchor" href="./splash-screen.css"/>
   </head>
   <body class="page-loading">
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+
+     <!--begin::Loading markup-->
+     <div id="splash-screen" class="splash-screen">
+      <img
+        src="http://trr-web.trrgroup.com/storage/INTRANET/PROD/Asset/LoadingGIF/loadingWhite.gif"
+        class="dark-logo "
+        alt="Metronic dark logo"
+      />
+      <img
+        src="http://trr-web.trrgroup.com/storage/INTRANET/PROD/Asset/LoadingGIF/loading.gif"
+        class="light-logo"
+        alt="Metronic light logo"
+      />
+      <!-- <span>Loading ...</span> -->
+    </div>
   </body>
 </html>

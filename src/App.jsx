@@ -1,14 +1,16 @@
-import React, { useState } from 'react'
+import React, { Suspense, useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { addCurrentUser } from '../redux/actions/userAction';
 import LoadingScreen from './components/MUI/LoadingScreen';
+import { SplashScreenProvider } from './core/SplashScreen';
 
 function App() {
   const dispatch = useDispatch();
   const isLoadding = useSelector(
     (state) => state?.loading_screen?.loading
   );
+
   const getAuth = () => {
     if (!localStorage) {
       return
@@ -28,15 +30,15 @@ function App() {
       console.error('AUTH LOCAL STORAGE PARSE ERROR', error)
     }
   }
-
   React.useEffect(() => {
     getAuth()
   }, [])
+  
   return (
-    <>
-      {isLoadding && <LoadingScreen loading={isLoadding}/>}
+    <SplashScreenProvider>
+      {isLoadding && <LoadingScreen loading={isLoadding} />}
       <Outlet />
-    </>
+    </SplashScreenProvider>
 
   )
 }
