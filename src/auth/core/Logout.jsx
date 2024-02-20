@@ -10,7 +10,7 @@ export function Logout() {
 
   return (
     <Routes>
-      <Navigate to='/auth/login' />
+      <Navigate to='/auth' />
     </Routes>
   )
 }

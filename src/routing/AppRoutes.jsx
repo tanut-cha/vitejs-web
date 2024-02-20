@@ -13,8 +13,10 @@ import { useDispatch, useSelector } from "react-redux";
  */
 const { BASE_URL } = import.meta.env
 
+
 const AppRoutes = () => {
     const currentuser = useSelector((state) => state?.user?.user)
+
     return (
         <BrowserRouter basename={BASE_URL}>
             <Routes>
@@ -32,12 +34,6 @@ const AppRoutes = () => {
                             <Route path='*' element={<Navigate to='/auth' />} />
                         </>
                     )}
-
-                    {/* <Route path='/*' element={<PrivateRoutes />} />
-                    <Route index element={<Navigate to='/apps' />} />
-
-                    <Route path='auth/*' element={<AuthPage />} />
-                    <Route path='*' element={<Navigate to='/auth' />} /> */}
                 </Route>
             </Routes>
         </BrowserRouter>

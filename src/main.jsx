@@ -20,7 +20,6 @@ const store = createStore(rootReducer, applyMiddleware(...middlewares))
 const container = document.getElementById("root");
 
 if (container) {
-  console.log('555555555555555555');
   ReactDOM.createRoot(document.getElementById('root')).render(
     // <React.StrictMode>
       <Provider store={store}>
