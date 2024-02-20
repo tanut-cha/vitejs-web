@@ -15,15 +15,23 @@ const { BASE_URL } = import.meta.env
 
 
 const AppRoutes = () => {
+    const [checkLogin, setCheckLogin] = React.useState(true)
     const currentuser = useSelector((state) => state?.user?.user)
-
+    React.useEffect(()=>{
+        if(currentuser){
+            setCheckLogin(currentuser)
+        }else{
+            setCheckLogin(false)
+        }
+    },[currentuser])
+    
     return (
         <BrowserRouter basename={BASE_URL}>
             <Routes>
                 <Route element={<App />}>
                     <Route path='error/*' element={<ErrorsPage />} />
                     <Route path='logout' element={<Logout />} />
-                    {currentuser ? (
+                    {checkLogin ? (
                         <>
                             <Route path='/*' element={<PrivateRoutes />} />
                             <Route index element={<Navigate to='/Home' />} />
