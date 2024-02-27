@@ -14,7 +14,7 @@ import Typography from '@mui/material/Typography';
 import { useDispatch, useSelector } from "react-redux";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { login_auth_emp_get } from '../../../../service/login';
-import { addCurrentUser } from '../../../../redux/actions/userAction';
+import { addCurrentUser, addUserRoleMenu } from '../../../../redux/actions/userAction';
 import { endEndLoadScreen, startLoadScreen } from '../../../../redux/actions/loadingScreenAction';
 
 function Copyright(props) {
@@ -60,6 +60,7 @@ export default function Login() {
                 let reponse = await login_auth_emp_get(datasend);
                 if (reponse && reponse.status == "Success") {
                     dispatch(addCurrentUser(reponse?.data?.auth_role_profile[0]))
+                    dispatch(addUserRoleMenu(reponse?.data?.auth_role_menu))
                     const lsValue = JSON.stringify(reponse)
                     localStorage.setItem(import.meta.env.VITE_APP_AUTH_LOCAL_STORAGE_KEY, lsValue);
                     dispatch(endEndLoadScreen())
@@ -75,7 +76,6 @@ export default function Login() {
             console.log(e);
         }
     }
-
     return (
         <ThemeProvider theme={defaultTheme}>
             <Grid container component="main" sx={{ height: '100vh' }}>
