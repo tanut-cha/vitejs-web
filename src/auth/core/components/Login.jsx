@@ -36,7 +36,8 @@ const defaultTheme = createTheme();
 
 export default function Login() {
     const dispatch = useDispatch();
-    const currentuser = useSelector((state) => state?.user?.user)
+    const currentuser = useSelector((state) => state?.user?.user);
+    const [errorMessage, setErrorMessage] = React.useState("");
 
     const handleSubmit = (event) => {
         dispatch(startLoadScreen())
@@ -45,7 +46,7 @@ export default function Login() {
         const obj = Function('return ' + jsonString)();
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        callLogin({
+        Login({
             ...obj,
             employee_username: data.get('username'),
             password: data.get('password'),
@@ -53,20 +54,22 @@ export default function Login() {
 
     };
 
-    const callLogin = async (datasend) => {
+    const Login = async (datasend) => {
         try {
             setTimeout(async () => {
                 let reponse = await login_auth_emp_get(datasend);
                 if (reponse && reponse.status == "Success") {
                     dispatch(addCurrentUser(reponse?.data?.auth_role_profile[0]))
                     const lsValue = JSON.stringify(reponse)
-                    localStorage.setItem(import.meta.env.VITE_APP_AUTH_LOCAL_STORAGE_KEY, lsValue)
+                    localStorage.setItem(import.meta.env.VITE_APP_AUTH_LOCAL_STORAGE_KEY, lsValue);
                     dispatch(endEndLoadScreen())
                 }
                 if (reponse && reponse.status == "Error") {
+                    console.log(reponse);
                     dispatch(endEndLoadScreen())
+                    await setErrorMessage(reponse?.error_message);
                 }
-            },4000)
+            }, 4000)
         } catch (e) {
             dispatch(endEndLoadScreen())
             console.log(e);
@@ -83,14 +86,15 @@ export default function Login() {
                     sm={4}
                     md={7}
                     sx={{
-                        backgroundImage: 'url(https://source.unsplash.com/random?wallpapers)',
+                        backgroundImage: `url(./public/media/slider/image.png)`,
                         backgroundRepeat: 'no-repeat',
                         backgroundColor: (t) =>
                             t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
-                        backgroundSize: 'cover',
+                        // backgroundSize: 'cover',
                         backgroundPosition: 'center',
                     }}
-                />
+                >
+                </Grid>
                 <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
                     <Box
                         sx={{
@@ -117,6 +121,7 @@ export default function Login() {
                                 name="username"
                                 autoComplete="current-user"
                                 autoFocus
+                                error={errorMessage != ""}
                             />
                             <TextField
                                 margin="normal"
@@ -127,11 +132,13 @@ export default function Login() {
                                 type="password"
                                 id="password"
                                 autoComplete="current-password"
+                                error={errorMessage != ""}
                             />
-                            <FormControlLabel
+                            <label className='text-red-500 font-bold'>{`${errorMessage}`}</label>
+                            {/* <FormControlLabel
                                 control={<Checkbox value="remember" color="primary" />}
                                 label="Remember me"
-                            />
+                            /> */}
                             <Button
                                 type="submit"
                                 fullWidth

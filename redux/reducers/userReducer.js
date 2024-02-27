@@ -1,4 +1,4 @@
-import { ADD_CUR_USER } from "../actions/userAction";
+import { ADD_CUR_USER, ADD_CUR_USER_ROLE_FUNC, ADD_CUR_USER_ROLE_MENU } from "../actions/userAction";
 
 const initialState = {
   user: undefined,
@@ -9,6 +9,36 @@ export function currentUser(state = initialState, action) {
     case ADD_CUR_USER:
       return {
         user: action.payload,
+      };
+
+    default:
+      return state;
+  }
+}
+const initialStateMenu = {
+  user_menu: null,
+};
+
+export function userRoleMenu(state = initialStateMenu, action) {
+  switch (action.type) {
+    case ADD_CUR_USER_ROLE_MENU:
+      return {
+        user_menu: action.payload,
+      };
+
+    default:
+      return state;
+  }
+}
+const initialStateFunc = {
+  user_func: null,
+};
+
+export function userRoleFunc(state = initialStateFunc, action) {
+  switch (action.type) {
+    case ADD_CUR_USER_ROLE_FUNC:
+      return {
+        user_func: action.payload,
       };
 
     default:
