@@ -19,7 +19,9 @@ export default function Home() {
       if (response && response.status == "success") {
         setOption(response?.data);
       }
-    } catch (e) {}
+    } catch (e) {
+      
+    }
   };
   React.useEffect(() => {
     getSex();
