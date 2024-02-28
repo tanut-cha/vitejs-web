@@ -11,7 +11,6 @@ export default defineConfig({
   base:'/test-layout/',
   build: {
     chunkSizeWarningLimit: 3000,
-    minify: "terser",
   },
   // esbuild: {
   //   drop: ['console', 'debugger'],

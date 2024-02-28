@@ -1,10 +1,12 @@
 import { combineReducers } from "redux";
 import { loaddingScreenReducer } from "./loadingScreenReducer";
-import { currentUser } from "./userReducer";
+import { currentUser, userRoleFunc, userRoleMenu } from "./userReducer";
 
 
 
 export const rootReducer = combineReducers({
   loading_screen: loaddingScreenReducer,
-  user:currentUser
+  user:currentUser,
+  user_menu: userRoleMenu,
+  user_func: userRoleFunc,
 });

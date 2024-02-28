@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState, } from 'react'
 import { useDispatch } from 'react-redux';
-import { addCurrentUser } from '../../redux/actions/userAction';
+import { addCurrentUser, addUserRoleMenu } from '../../redux/actions/userAction';
 
 const AuthContext = createContext("")
 
@@ -20,6 +20,7 @@ const AuthProvider = ({ children }) => {
             if (auth) {
                 // You can easily check auth_token expiration also
                 await dispatch(addCurrentUser(auth?.data?.auth_role_profile[0]))
+                await dispatch(addUserRoleMenu(auth?.data?.auth_role_menu))
                 // console.log(auth,'authauthauthauthauth');
             }
         } catch (error) {
