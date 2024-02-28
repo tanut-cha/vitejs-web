@@ -20,7 +20,7 @@ export default function Home() {
         setOption(response?.data);
       }
     } catch (e) {
-      
+      console.log(1);
     }
   };
   React.useEffect(() => {
